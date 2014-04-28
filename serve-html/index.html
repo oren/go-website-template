@@ -1,1 +1,36 @@
-<h2>hello html</h2>
+<h2>Serving HTML page</h2>
+lets look at 2 ways to do that:
+<pre>
+func main() {
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":3000", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "index.html")
+}
+
+-------------------------------------------------------
+</pre>
+
+And a bit more verbose:
+
+<pre>
+func main() {
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":3000", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	dat, err := ioutil.ReadFile("index.html")
+	check(err)
+	w.Write(dat)
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+</pre>

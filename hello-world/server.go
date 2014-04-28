@@ -1,15 +1,16 @@
+// hello world using anonymous function
+
 package main
 
 import (
-	"fmt"
+        "io"
 	"net/http"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello %s!", r.URL.Path[1:])
-}
-
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+                io.WriteString(w, "hello, world!\n")
+        })
+
 	http.ListenAndServe(":3000", nil)
 }

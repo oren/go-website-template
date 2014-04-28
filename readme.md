@@ -8,6 +8,7 @@ Template for a Go Website
 
 ## Run
 
+    cd hello-world
     go run server.go
 
 curl 0.0.0.0:3000/joe  
@@ -15,7 +16,8 @@ curl 0.0.0.0:3000/joe
 
 ## Compile
 
+    cd hello-world
     go build
-    go-website-template
+    => hello-world executable
 
 ## Test

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-        "io/ioutil"
 )
 
 func main() {
@@ -12,13 +10,5 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-        dat, err := ioutil.ReadFile("index.html")
-        check(err)
-        fmt.Fprintf(w, string(dat))
-}
-
-func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+	http.ServeFile(w, r, "index.html")
 }

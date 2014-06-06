@@ -46,7 +46,7 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	message := []byte{'a', 'b', 'c', 'd'}
+	message := []byte{'h', 'e', 'l', 'l', 'o'}
 
 	if err = ws.WriteMessage(websocket.TextMessage, message); err != nil {
 		return

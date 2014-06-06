@@ -1,5 +1,7 @@
 # Hello World WebSocket
 
+Server that emit 'hello' message as soon as a client connects.
+
 * [Run](#run)
 
 ## Run

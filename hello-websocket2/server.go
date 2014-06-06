@@ -10,7 +10,7 @@ const listenAddr = "localhost:4000"
 
 func main() {
 	http.HandleFunc("/", serveHome)
-        http.HandleFunc("/static/", static)
+	http.HandleFunc("/static/", static)
 	http.HandleFunc("/ws", serveWs)
 	err := http.ListenAndServe(listenAddr, nil)
 	if err != nil {
@@ -19,11 +19,11 @@ func main() {
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, "index.html")
+	http.ServeFile(w, r, "index.html")
 }
 
 func static(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, r.URL.Path[1:])
+	http.ServeFile(w, r, r.URL.Path[1:])
 }
 
 var upgrader = websocket.Upgrader{
@@ -44,5 +44,19 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 
 	if err = ws.WriteMessage(websocket.TextMessage, message); err != nil {
 		return
+	}
+
+	for {
+		messageType, p, err := ws.ReadMessage()
+		if err != nil {
+			return
+		}
+
+		s := string(p[:])
+		log.Println(s)
+
+		if err = ws.WriteMessage(messageType, p); err != nil {
+			return
+		}
 	}
 }

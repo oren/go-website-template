@@ -40,7 +40,7 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	message := []byte{'h', 'e', 'l', 'l', 'o'}
+	message := []byte("connected")
 
 	if err = ws.WriteMessage(websocket.TextMessage, message); err != nil {
 		return

@@ -52,8 +52,7 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		s := string(p[:])
-		log.Println(s)
+		log.Println(string(p))
 
 		if err = ws.WriteMessage(messageType, p); err != nil {
 			return

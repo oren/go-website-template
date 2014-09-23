@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", addHandler)
+        http.Handle("/", http.FileServer(http.Dir("static")))
+	http.HandleFunc("/projects", newProject)
 	http.ListenAndServe(":8080", nil)
 }
 
-func addHandler(w http.ResponseWriter, r *http.Request) {
+func newProject(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, r.Method+" not allowed", http.StatusMethodNotAllowed)
 		return

@@ -1,4 +1,8 @@
 # ints
 curl -X POST localhost:8080/projects -d '{"A":1, "B":4}'
-# strings
-curl -X POST localhost:8080/projects2 -d '{"A":"test", "B":"test2"}'
+
+# FORM
+curl -X POST localhost:8080/projects2 -d "A=test" -d "B=test2"
+
+#JSON (Ajax)
+curl -X POST localhost:8080/projects3 -d '{"A":"test", "B":"test2"}'

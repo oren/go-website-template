@@ -11,6 +11,7 @@ func main() {
         http.Handle("/", http.FileServer(http.Dir("static")))
 	http.HandleFunc("/projects", newProject)
 	http.HandleFunc("/projects2", newProject2)
+	http.HandleFunc("/projects3", newProject3)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -21,7 +22,9 @@ func newProject(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	req := struct{ A, B int }{}
+
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		log.Println(err)
 		http.Error(w, "bad request", http.StatusBadRequest)
 		return
 	}
@@ -32,25 +35,36 @@ func newProject(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// post 2 strings
+// endpoint for form POST
 func newProject2(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, r.Method+" not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-        fmt.Printf("%+v\n", r.Body)
+        str := fmt.Sprintf("%s %s", r.FormValue("A"),  r.FormValue("B"))
+        log.Println(str)
+
+        w.WriteHeader(http.StatusCreated)
+}
+
+// endpoint for JSON POST
+func newProject3(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, r.Method+" not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
 	req := struct{ A, B string }{}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-                fmt.Println("wow. error")
+		log.Println(err)
 		http.Error(w, "bad request", http.StatusBadRequest)
 		return
 	}
-        fmt.Println("life is good")
 	res := struct{ Result string }{req.A}
 	if err := json.NewEncoder(w).Encode(res); err != nil {
 		log.Println(err)
 		http.Error(w, "oops", http.StatusInternalServerError)
 	}
+        w.WriteHeader(http.StatusCreated)
 }

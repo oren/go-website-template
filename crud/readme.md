@@ -1,6 +1,8 @@
     go run server.go
     curl 0.0.0.0:3000/projects/ | jq '.'
+
 =>
+
     {
       "Errors": [
         ""
@@ -32,6 +34,8 @@
 
 
     curl -X POST -i localhost:3000/projects/ -d '{"name":"david", "email":"foo@gmail.com", "employee_id":"13", "team_name":"The Fools", "team_email":"awesometeam@lists.yp.com", "team_employees":"Manny(manny@yp.com), Mo(mo@yp.com), Jack(jack@yp.com)", "idea_description":"cool project! wow"}'
+
 =>
+
     HTTP/1.1 201 Create
 

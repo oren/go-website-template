@@ -1,4 +1,4 @@
-// A stand-alone HTTP server providing a websit and a few API
+// A stand-alone HTTP server
 package main
 
 import (

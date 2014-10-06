@@ -10,8 +10,6 @@ import (
 )
 
 func init() {
-	http.Handle("/", http.FileServer(http.Dir("static")))
-
 	// GET /projects/  - list of projects
 	// POST /projects/ - create project
 	http.HandleFunc("/projects/", ProjectsHandler)

@@ -20,6 +20,7 @@ Code for a REST service from this nice tutorial: http://thenewstack.io/make-a-re
 * GET /todos/1
 * POST /todos
 
+### Usage
 
 		curl localhost:3000
 
@@ -43,5 +44,5 @@ Welcome!
 			 -> logger                       -> error
 
 
-main, router, routes and handlers holds the webservice functionality. We create a slice of structs and insert it into our router.  
+main, router, routes and handlers holds the webservice functionality. We create a slice of structs and insert it into our router.
 repo and todo represents our Database. for now it's just a slice of structs.

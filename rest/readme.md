@@ -1,6 +1,6 @@
 # Web Service
 
-Rest service from this nice REST tutorial: http://thenewstack.io/make-a-restful-json-api-go/
+Code for a REST service from this nice tutorial: http://thenewstack.io/make-a-restful-json-api-go/
 
 * [Run](#run)
 * [API](#api)

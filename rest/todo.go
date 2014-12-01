@@ -9,4 +9,5 @@ type Todo struct {
 	Due       time.Time `json:"due"`
 }
 
+// new type: slice of Todo structs
 type Todos []Todo

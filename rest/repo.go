@@ -4,6 +4,7 @@ import "fmt"
 
 var currentId int
 
+// our 'Database'
 var todos Todos
 
 // Give us some seed data

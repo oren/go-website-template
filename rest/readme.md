@@ -4,6 +4,7 @@ Rest service from this nice REST tutorial: http://thenewstack.io/make-a-restful-
 
 * [Run](#run)
 * [API](#api)
+* [Code structure](#code-structure)
 
 ## Run
 
@@ -35,3 +36,8 @@ Welcome!
   	curl -H "Content-Type: application/json" -d '{"name":"New Todo"}' http://localhost:3000/todos
 
 {"id":3,"name":"New Todo","completed":false,"due":"0001-01-01T00:00:00Z"}
+
+## Code Structure
+
+		main -> router -> routes -> handlers -> repo -> todo
+			 -> logger                       -> error
